@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -21,17 +22,21 @@ public class Harshad {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.println("Enter a range of positive numbers\n");
-        System.out.print("Enter first number in range: ");
-        int firstNumber = keyboard.nextInt();
-        System.out.print("Enter last number in range: ");
-        int lastNumber = keyboard.nextInt();
+        int firstNumber = Integer.parseInt(JOptionPane.showInputDialog(null,
+                "Enter first number: ","Enter a range of positive numbers",
+                JOptionPane.INFORMATION_MESSAGE));
 
-        // Check and output which numbers in the range are harshad numbers
-        System.out.printf("%nThe harshad numbers in the range %d - %d are: %n%n", firstNumber, lastNumber);
+        int lastNumber = Integer.parseInt(JOptionPane.showInputDialog(null,
+                "Enter second number: ","Enter a range of positive numbers",
+                JOptionPane.INFORMATION_MESSAGE));
+
+        String message= "";
         for (int i = firstNumber; i <= lastNumber; i++) {
             if (isAHarshad(i))
-                System.out.println(i);
+                message += i + ", ";
         }
+        JOptionPane.showMessageDialog(null, message,
+                "The harshad numbers in the range "+ firstNumber + " - " + lastNumber + " are:" ,
+                JOptionPane.INFORMATION_MESSAGE);
     }
 }
