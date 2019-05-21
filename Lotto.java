@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,15 +23,23 @@ public class Lotto {
         for(int i = 1; i <= noOfLines; i++){
             shuffle(numbers);
             System.out.print("Line " + i + ": ");
+
+            // create array to store first 6 numbers of shuffled array
+            int[]myNums = new int[6];
             for(int num = 0; num < 6; num++){
-                System.out.print(numbers[num] + " ");
+                myNums[num] = numbers[num];
+            }
+            // sort the 6 numbers so they can be printed in order
+            Arrays.sort(myNums);
+
+            for(int num = 0; num < 6; num++){
+                System.out.print(myNums[num] + " ");
             }
             System.out.println();
         }
     }
 
     public static void main(String[] args) {
-
         Scanner kb = new Scanner(System.in);
 
         // initialise array with 47 numbers
@@ -41,8 +50,8 @@ public class Lotto {
 
         System.out.print("How many lines do you want to play: ");
         int lines = kb.nextInt();
+
         printNumbers(lines, numbers);
         System.out.println("Good luck!");
-
     }
 }
