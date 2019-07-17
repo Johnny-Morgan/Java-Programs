@@ -1,3 +1,5 @@
+package section12.maps;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -23,22 +25,23 @@ public class Main {
         locations.get(1).addExit("E", 3);
         locations.get(1).addExit("S", 4);
         locations.get(1).addExit("N", 5);
-        locations.get(1).addExit("Q", 0);
 
         locations.get(2).addExit("N", 5);
-        locations.get(2).addExit("Q", 0);
 
         locations.get(3).addExit("W", 1);
-        locations.get(3).addExit("Q", 0);
 
         locations.get(4).addExit("N", 1);
         locations.get(4).addExit("W", 2);
-        locations.get(4).addExit("Q", 0);
 
         locations.get(5).addExit("S", 1);
         locations.get(5).addExit("W", 2);
-        locations.get(5).addExit("Q", 0);
 
+        Map<String, String> vocabulary = new HashMap<>();
+        vocabulary.put("QUIT", "Q");
+        vocabulary.put("NORTH", "N");
+        vocabulary.put("SOUTH", "S");
+        vocabulary.put("EAST", "E");
+        vocabulary.put("WEST", "W");
         int loc = 1;
         while (true) {
             System.out.println(locations.get(loc).getDescription());
@@ -53,6 +56,15 @@ public class Main {
             System.out.println();
 
             String direction = keyboard.nextLine().toUpperCase();
+            if(direction.length() > 1) {
+                String[] words = direction.split(" ");
+                for(String word: words) {
+                    if(vocabulary.containsKey(word)) {
+                        direction = vocabulary.get(word);
+                        break;
+                    }
+                }
+            }
             if (exits.containsKey(direction)) {
                 loc = exits.get(direction);
             } else {
